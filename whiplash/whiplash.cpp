@@ -7,25 +7,6 @@ using namespace std;
 // Resolucion al problema de codeForces
 // https://codeforces.com/problemset/problem/2254/F
 
-void imprimir(const vector<int>& v ){
-	int tam = v.size();
-	for(int i = 0; i < tam; i++){
-		for(int j = 0; j < tam; j++)
-			if(j != i)
-				cout << (v[j]^v[i]) << "\t";
-			else
-				cout << v[i] << "\t";
-		cout << endl;
-	}
-}
-
-void imp(const vector<unsigned int>& v ){
-	for(unsigned int a: v )
-		cout << a << " ";
-	cout << endl;
-}
-
-
 bool busquedaBinaria(const vector<unsigned int>& arreglo_entrada,int indiceLimiteIzquierdo, int indiceLimiteDerecho, int busqueda){
 	int mitad;
 	while(indiceLimiteIzquierdo != indiceLimiteDerecho){
@@ -50,18 +31,15 @@ int posibilidad(const vector<unsigned int>& a, const vector<unsigned int>& b, in
 	}
 	aPb[baseN] = a[baseN];
 	
-	//n + 2(n log n)
+	//n + (n log n)
 	sort(aPb.begin(), aPb.end());
 	
-	//imp(aP);
-	//imp(aPb);
-	// n + 2(n log n) + n
+	// n + (n log n) + n
 
 	return (b == aPb);
 }
 
-int main(){
-	
+void casot(){
 	int n; 
 	cin >> n;
 	vector <unsigned int> a(n);
@@ -80,7 +58,7 @@ int main(){
 	
 	if(b == t){
 		cout << "Yes" << endl;
-		return 1;
+		return;
 	}
 		
 	
@@ -101,12 +79,21 @@ int main(){
 			if(val1){ // Si esta bien entonces es una posibilidad
 				if(posibilidad(a, b, i, n)){
 					cout << "Yes" << endl;
-					return 1;
+					return;
 				}	
 			}		
 		}
 	}
 	
 	cout << "No" << endl;
+	return;
+}
+
+int main(){
+	
+	int t;
+	cin >> t;
+	while(t--)
+		casot();
 	return 0;
 }
